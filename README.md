@@ -1,6 +1,6 @@
 # baidu-submit-github-action
 
-> 使用 API 提交方式向百度搜索主动推送 URL 的 **Github Actions** 模版
+> 使用 API 提交方式向百度搜索主动推送 URL 的 **GitHub Actions** 模版
 
 ## 使用方法
 
@@ -21,9 +21,11 @@ echo "SITE_URL=http://example.com" > .env \
 
 ```
 schedule:
-  - cron: "30 12 * * *"
-  - cron: "30 23 * * *"
+  - cron: "30 4 * * *"
+  - cron: "30 15 * * *"
 ```
+
+GitHub Actions 设置的时间为 UTC 时间，4 点等于 北京时间 12 点。
 
 6. 保存，提交，完成配置
 
