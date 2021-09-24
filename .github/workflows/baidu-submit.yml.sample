@@ -4,8 +4,8 @@ on:
     branches:
       - main
   schedule:
-    - cron: "30 12 * * *"
-    - cron: "30 23 * * *"
+    - cron: "30 4 * * *"
+    - cron: "30 15 * * *"
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
