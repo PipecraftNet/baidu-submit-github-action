@@ -1,0 +1,35 @@
+name: Baidu submit - discuss.en.pipecraft.net
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "10 4 * * *"
+    - cron: "10 15 * * *"
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+        with:
+          repository: PipecraftNet/baidu-submit.sh
+
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+        with:
+          path: log
+
+      - name: Baidu submit 🚀🚀🚀
+        run: |
+          echo "SITE_URL=https://discuss.en.pipecraft.net" > .env \
+          && echo "SITEMAP_URL=https://discuss.en.pipecraft.net/sitemap.xml" >> .env \
+          && echo "TOKEN=${{ secrets.BAIDU_TOKEN }}" >> .env \
+          && mkdir -p log \
+          && ./baidu-submit.sh >> log/baidu-submit.log 2>&1
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: main # The branch the action should deploy to.
+          folder: log # The folder the action should deploy.
